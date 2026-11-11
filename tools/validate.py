@@ -16,7 +16,9 @@ sfx=data.split('__sfx__\n')[1].split('__music__\n')[0].splitlines()
 assert len(sfx)<=64
 assert all(re.fullmatch('[0-9a-f]{168}',line) for line in sfx)
 assert all(int(line[8+i*5+2],16)<=7 and int(line[8+i*5+3],16)<=7 for line in sfx for i in range(32))
-assert all(re.fullmatch('[0-9a-f]{2} [0-9a-f]{8}',line) for line in data.split('__music__\n')[1].splitlines())
+assert all(re.fullmatch('[0-9a-f]{2} [0-9a-f]{8}',line) for line in data.split('__music__\n')[1].split('__label__\n')[0].splitlines())
+label=data.split('__label__\n')[1].splitlines()
+assert len(label)==128 and all(re.fullmatch('[0-9a-f]{128}',r) for r in label)
 print('PASS: self-contained cartridge sections, ASCII, source-character and audio storage limits')
 if a.shrinko8:
     cmd=[sys.executable,str(a.shrinko8),str(cart),'--count','--parsable-count','--lint','--no-lint-unused','--no-lint-duplicate']

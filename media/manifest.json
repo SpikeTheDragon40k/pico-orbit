@@ -1,0 +1,54 @@
+{
+  "media/01-title-native.png": {
+    "bytes": 1755,
+    "sha256": "46f1b0f824d6d3cf8d690572792f028abb2cb651c78fd7c9bdec22d9c7d5c9fd"
+  },
+  "media/01-title.png": {
+    "bytes": 3904,
+    "sha256": "93026c02f1745019d53ac0aca65a33a96c0de1ccb9b5447304a05642f3bb6330"
+  },
+  "media/02-neon-grid-native.png": {
+    "bytes": 1388,
+    "sha256": "8b00eb6926ac111758ba12389d2c408dde99a9524df12eb927dfb47dbdb3f511"
+  },
+  "media/02-neon-grid.png": {
+    "bytes": 3682,
+    "sha256": "942f0cf232192b1bbf797db3f83fb12a3fa5da9d34fe240bc07d1fb39eba7e33"
+  },
+  "media/03-solar-core-native.png": {
+    "bytes": 1959,
+    "sha256": "0faefba0edd47b09ce223b2a4c59382a1fe5bb6bd0b93dab9b9930a46c4af389"
+  },
+  "media/03-solar-core.png": {
+    "bytes": 4936,
+    "sha256": "fdd3b6bd6278cdd8dfdd3745d376b4bdd1a937c30730d9d6c3f9f7d80e571ca1"
+  },
+  "media/04-void-nebula-native.png": {
+    "bytes": 1521,
+    "sha256": "132aa67391b47d6e77dcfc4393ca7bb683698a950ee2780c083489609172dd48"
+  },
+  "media/04-void-nebula.png": {
+    "bytes": 4018,
+    "sha256": "50522a3fcf30d239228db1ed36227df8a9c1fb3593938fcccb20f5f9a42a9e62"
+  },
+  "media/05-ion-reactor-native.png": {
+    "bytes": 1391,
+    "sha256": "0d83958de581b3d1b8826df2e009aebad17efe88b1716321258f7d87af98e412"
+  },
+  "media/05-ion-reactor.png": {
+    "bytes": 3736,
+    "sha256": "6b55502702d31a308b49a5083acd8a478584e02949a95fecbcfa805beccc5c74"
+  },
+  "media/cartridge-label.png": {
+    "bytes": 5707,
+    "sha256": "0e3a0359f6a1d878f5526fe6fedc18dd02df97e0982c90435f4e5bc3f819eeee"
+  },
+  "media/orbit-rush-gameplay.gif": {
+    "bytes": 176226,
+    "sha256": "4b021caf3213d32cf93f8d8ba645432e06b2d2d6715b6026614ac32d96ef8c47"
+  },
+  "release/orbit_rush.p8.png": {
+    "bytes": 21913,
+    "sha256": "9d67f5cd4cac9df4fa2e44fcd18679b6ee0d9a23840448054e075741644fcc6f"
+  }
+}

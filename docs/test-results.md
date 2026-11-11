@@ -34,3 +34,13 @@ No graphical PICO-8 playtest was performed. Official runtime launch, game feel, 
 `python3 tools/validate.py --shrinko8 /tmp/orbit-shrinko8/shrinko8.py --require-budget` passed against the final tested cartridge. Pinned shrinko8 revision: `d26c7d0abd6561b998ed6f530fed0ed3bc2216c9`. PICO-specific parse/lint passed. Counts: **6147 tokens**, **21604 source characters**, **7568 compressed code bytes**. Token ceiling8192; source ceiling65535; project compressed gate15360 (tool reports15616). This is a console-specific compatible measurement, not official-runtime certification. See resource-report.txt.
 
 `lua tools/profile_prediction.lua` also executed: sampled peak desktop VM instruction counts for1..5 balls were17k/35k/44k/44k/45k. These are diagnostic counts, not PICO-8 CPU percentages, and exclude native API/render work.
+
+## Creator playtest update
+
+The creator reports that the current game "plays perfectly." This is user-reported runtime success, not an assistant-run graphical test. Runtime version, configuration coverage, CPU readings, controller/audio checks and final PNG export verification remain to be recorded. See docs/release-guide.md for the final publishing workflow.
+
+## Official-runtime media capture
+
+The installed runtime was subsequently found at `/home/spike/Downloads/pico-8/pico8`. It successfully rendered the title and all four gameplay arenas using native headless/off-screen capture. Its native GIF recorder produced240 gameplay frames (384x384,7.2-second GIF). Scripted input drives the human seat during these captures. This verifies these rendering/gameplay paths in the official runtime, but is not a human/controller/audio playtest or a comprehensive fixed-point/performance certification.
+
+The official runtime exported `release/orbit_rush.p8.png`. Decoding it with shrinko8 verified its Lua and label exactly match the assembled cartridge. The new source cover is preserved across builds. PICO-specific lint/budget checks passed unchanged at6147 tokens/7568 compressed bytes, and the focused assembled-cart suite passed20 groups/389 assertions after the asset/pipeline changes. Gameplay Lua was not changed.
