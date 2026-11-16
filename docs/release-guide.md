@@ -46,7 +46,7 @@ Use Ctrl-6 for actual screenshots and Ctrl-8 followed by Ctrl-9 for a short game
 
 Sign in to the Lexaloffle BBS, use its cartridge submission form, attach the tested `.p8.png`, and prepare a release post. The BBS has a Releases category for finished cartridges. Use docs/bbs-post.md as draft copy. Add actual screenshots/GIF, version, controls, credits and the source link. Check the web player after publication, then search for the game in Splore. Discovery or featured placement is not guaranteed.
 
-Publication has not been performed by the assistant. The draft is reviewable before any external posting. For subsequent releases, update the existing BBS cartridge/post through its current edit controls rather than creating unnecessary duplicate listings.
+The creator has published the cartridge on the Lexaloffle BBS: https://www.lexaloffle.com/bbs/?pid=199244#p (the assistant did not perform the posting). The draft is reviewable before any external posting. For subsequent releases, update the existing BBS cartridge/post through its current edit controls rather than creating unnecessary duplicate listings.
 
 After the final smoke test, commit the release changes, create a `v1.0.0` tag and attach the tested PNG cartridge to a GitHub release. Keep the editable source available separately.
 
