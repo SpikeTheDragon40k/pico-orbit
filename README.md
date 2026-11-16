@@ -66,7 +66,3 @@ This reports console-specific counts; source characters are never used as a toke
 - `docs/test-results.md`, `docs/progress.md`: evidence and remaining release gates.
 
 Original names, pilot designs and game concept: SpikeTheDragon40k. PICO-8 reinterpretations use original primitive art and generated sequencer audio; no WebP or MP3 conversion is embedded. No third-party game assets are included.
-
-## Cartridge cover and promotional captures
-
-The build embeds `assets/label.txt`, so the original cover survives rebuilds. See [media/README.md](media/README.md) for actual official-runtime screenshots, the gameplay GIF, provenance and regeneration commands. [release/orbit_rush.p8.png](release/orbit_rush.p8.png) is the labelled runnable cartridge exported by official PICO-8. The screenshots/GIF use scripted input with the real game engine and renderer; they are not human-playtest footage.
