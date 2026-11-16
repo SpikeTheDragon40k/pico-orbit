@@ -31,6 +31,10 @@ def build():
     # Pattern flags 3: loop begin+loop end. Channels 0,1; disabled 2,3.
     cart='pico-8 cartridge // http://www.pico-8.com\nversion 42\n__lua__\n'+code
     cart+='__sfx__\n'+'\n'.join(audio)+'\n__music__\n03 0a0b4243\n'
+    label=(ROOT/'assets/label.txt').read_text()
+    rows=label.splitlines()
+    assert len(rows)==128 and all(len(r)==128 and set(r)<=set('0123456789abcdef') for r in rows)
+    cart+='__label__\n'+label
     out=ROOT/'carts/orbit_rush.p8'
     out.parent.mkdir(exist_ok=True)
     out.write_text(cart,encoding='ascii')

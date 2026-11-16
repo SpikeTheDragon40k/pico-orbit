@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orbit Rush — PICO-8 Edition</title>
+<meta name="description" content="A single-player PICO-8 arena paddle game. Guard your goal against 1–3 CPUs. Curve, dash, grab — last pilot standing wins.">
+<link rel="icon" type="image/png" href="logo.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Orbit Rush — PICO-8 Edition">
+<meta property="og:description" content="Guard your goal. Curve, dash, grab — last pilot standing wins.">
+<meta property="og:url" content="https://spikethedragon40k.github.io/pico-orbit/">
+<meta property="og:image" content="https://spikethedragon40k.github.io/pico-orbit/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#000000; --panel:#1d2b53; --text:#fff1e8; --muted:#c2c3c7;
+  --blue:#29adff; --pink:#ff77a8; --green:#00e436; --orange:#ffa300;
+  --pixel:"Press Start 2P",monospace; --mono:"Space Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 var(--mono);overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-1;
+  background-image:radial-gradient(1px 1px at 20% 30%,var(--muted) 50%,transparent 51%),
+  radial-gradient(1px 1px at 70% 15%,var(--muted) 50%,transparent 51%),
+  radial-gradient(1px 1px at 85% 60%,var(--blue) 50%,transparent 51%),
+  radial-gradient(1px 1px at 40% 80%,var(--muted) 50%,transparent 51%),
+  radial-gradient(1px 1px at 10% 70%,var(--pink) 50%,transparent 51%);
+  background-size:300px 300px;opacity:.6}
+a{color:var(--blue)}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px}
+img{image-rendering:pixelated;max-width:100%;height:auto;display:block}
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0;gap:12px;flex-wrap:wrap}
+nav .brand{font:12px var(--pixel);color:var(--text);text-decoration:none;display:flex;align-items:center;gap:10px}
+nav .brand img{width:32px;height:32px}
+nav .links{display:flex;gap:16px;font-size:14px}
+nav .links a{color:var(--muted);text-decoration:none}
+nav .links a:hover{color:var(--pink)}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding:48px 0 64px}
+.hero h1{font:clamp(28px,6vw,48px)/1.2 var(--pixel);margin:0 0 8px;color:var(--blue);text-shadow:4px 4px 0 var(--panel)}
+.hero h1 span{display:block;color:var(--pink)}
+.edition{font:11px var(--pixel);color:var(--muted);letter-spacing:2px}
+.tagline{font-size:18px;margin:24px 0}
+.badge{display:inline-block;font:10px var(--pixel);color:var(--orange);border:2px solid var(--orange);padding:6px 8px;margin-bottom:24px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{font:11px var(--pixel);padding:14px 16px;text-decoration:none;border:none;box-shadow:4px 4px 0 var(--panel);transition:transform .1s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--panel)}
+.btn.primary{background:var(--green);color:var(--bg)}
+.btn.ghost{background:transparent;color:var(--text);outline:2px solid var(--text);outline-offset:-2px}
+.screen{border:4px solid var(--panel);box-shadow:0 0 0 4px var(--bg),0 0 0 8px var(--blue)}
+.screen img{width:100%}
+.caption{font-size:12px;color:var(--muted);margin-top:16px}
+section{padding:56px 0;border-top:4px dashed var(--panel)}
+h2{font:clamp(16px,3vw,22px)/1.4 var(--pixel);margin:0 0 24px}
+h2.c-pink{color:var(--pink)} h2.c-green{color:var(--green)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:2px solid var(--panel)}
+th{font:10px var(--pixel);color:var(--orange)}
+.tbl{overflow-x:auto}
+kbd{font:inherit;background:var(--panel);padding:1px 6px;border-bottom:2px solid var(--blue)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:32px}
+.card{background:var(--panel);padding:20px}
+.card h3{font:12px var(--pixel);margin:0 0 12px}
+.card p{margin:0;font-size:14px;color:var(--muted)}
+.c1 h3{color:var(--blue)} .c2 h3{color:var(--pink)} .c3 h3{color:var(--green)} .c4 h3{color:var(--orange)}
+.pickups{list-style:none;padding:0;margin:0;font-size:14px;color:var(--muted)}
+.pickups b{color:var(--text);font-family:var(--pixel);font-size:11px;margin-right:6px}
+ol.steps{padding-left:20px} ol.steps li{margin-bottom:20px}
+pre{position:relative;background:var(--panel);margin:12px 0 0;padding:16px 56px 16px 16px;overflow-x:auto;font:14px var(--mono);border-left:4px solid var(--green)}
+.copy{position:absolute;top:8px;right:8px;font:9px var(--pixel);background:var(--bg);color:var(--green);border:2px solid var(--green);padding:6px;cursor:pointer}
+.copy:hover{background:var(--green);color:var(--bg)}
+.note{font-size:14px;color:var(--muted)}
+footer{border-top:4px dashed var(--panel);padding:32px 0 48px;font-size:13px;color:var(--muted)}
+footer .links{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px}
+@media (max-width:760px){.hero{grid-template-columns:1fr;padding-top:24px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}.btn:hover{transform:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav>
+  <a class="brand" href="#"><img src="logo.png" alt="">ORBIT RUSH</a>
+  <div class="links"><a href="#play">Play</a><a href="#install">Install</a><a href="https://github.com/SpikeTheDragon40k/pico-orbit">GitHub</a></div>
+</nav>
+
+<header class="hero">
+  <div>
+    <h1>ORBIT <span>RUSH</span></h1>
+    <div class="edition">PICO-8 EDITION</div>
+    <p class="tagline">Guard your goal. Curve, dash, grab — last pilot standing wins.</p>
+    <div class="badge">v0.1.0 · RELEASE CANDIDATE</div>
+    <div class="btns">
+      <a class="btn primary" href="orbit_rush.p8.png" download>▶ DOWNLOAD CART</a>
+      <a class="btn ghost" href="https://github.com/SpikeTheDragon40k/pico-orbit">SOURCE</a>
+    </div>
+  </div>
+  <div>
+    <div class="screen"><img src="gameplay.gif" width="384" height="384" alt="Orbit Rush gameplay: a ball bouncing between four paddles in a square arena"></div>
+    <p class="caption">Real PICO-8 capture with scripted input (not a human playtest).</p>
+  </div>
+</header>
+
+<section id="play">
+  <h2 class="c-pink">HOW TO PLAY</h2>
+  <p>You hold the bottom goal against 1–3 CPU pilots. Every goal you concede costs a point. Run out of points and your goal turns into a wall. The last pilot standing wins the round. Move while you hit to put spin on the ball.</p>
+  <div class="tbl"><table>
+    <tr><th>ACTION</th><th>PICO-8</th><th>KEYBOARD</th></tr>
+    <tr><td>Move paddle</td><td>Left / right</td><td><kbd>←</kbd> <kbd>→</kbd></td></tr>
+    <tr><td>DASH</td><td>O (button 4)</td><td><kbd>Z</kbd> <kbd>N</kbd> <kbd>C</kbd></td></tr>
+    <tr><td>GRAB / THROW</td><td>X (button 5)</td><td><kbd>X</kbd> <kbd>M</kbd> <kbd>V</kbd></td></tr>
+    <tr><td>Pause</td><td>Pause menu</td><td><kbd>Enter</kbd> / <kbd>P</kbd></td></tr>
+  </table></div>
+  <div class="cards">
+    <div class="card c1"><h3>DASH</h3><p>Lunge forward and hit harder. Recharges in 2.2 seconds.</p></div>
+    <div class="card c2"><h3>GRAB</h3><p>Opens a 0.9-second catch window. Hold the ball for up to 1.2 seconds, then press X to throw. Where you caught it and how you're moving set the aim. Recharges in 4 seconds.</p></div>
+    <div class="card c3"><h3>PICKUPS</h3>
+      <ul class="pickups">
+        <li><b>S</b>Shield: blocks one goal (12s)</li>
+        <li><b>T</b>Slows balls in your zone (6s)</li>
+        <li><b>M</b>Extra ball (max 5)</li>
+        <li><b>W</b>Wide paddle (10s)</li>
+      </ul></div>
+    <div class="card c4"><h3>SETUP</h3><p>Pick from 4 arenas and 4 difficulties, 1–3 CPUs, 5–25 starting points, and first to 1, 2, 3 or 5 round wins.</p></div>
+  </div>
+</section>
+
+<section id="install">
+  <h2 class="c-green">INSTALL</h2>
+  <ol class="steps">
+    <li>Get a licensed copy of <a href="https://www.lexaloffle.com/pico-8.php">PICO-8</a>.</li>
+    <li>Download <a href="orbit_rush.p8.png" download>orbit_rush.p8.png</a>. Drag it onto PICO-8, then type <kbd>run</kbd>.</li>
+    <li>Or run it from source:
+      <pre><code>git clone https://github.com/SpikeTheDragon40k/pico-orbit.git
+cd pico-orbit
+pico8 -run carts/orbit_rush.p8</code></pre>
+    </li>
+  </ol>
+  <p class="note">The cart works on its own: you don't need a network connection or any extra files. It only reads controller zero.</p>
+</section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="links">
+      <a href="https://github.com/SpikeTheDragon40k/pico-orbit">Source</a>
+      <a href="https://github.com/SpikeTheDragon40k/pico-orbit/issues">Issues</a>
+      <a href="https://github.com/SpikeTheDragon40k/pico-orbit/blob/main/CHANGELOG.md">Changelog</a>
+      <a href="https://github.com/SpikeTheDragon40k/orbit-rush">Original Orbit Rush</a>
+    </div>
+    <p>Game concept, names and pilot designs by SpikeTheDragon40k. No license has been chosen yet. PICO-8 is a product of Lexaloffle Games.</p>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll("pre").forEach(function(pre){
+  var b=document.createElement("button");b.className="copy";b.type="button";b.textContent="COPY";
+  b.addEventListener("click",function(){
+    navigator.clipboard.writeText(pre.querySelector("code").innerText).then(function(){
+      b.textContent="OK!";setTimeout(function(){b.textContent="COPY"},1500);
+    });
+  });
+  pre.appendChild(b);
+});
+</script>
+</body>
+</html>

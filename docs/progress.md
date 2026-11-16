@@ -60,3 +60,11 @@ Scores describe confidence in the current candidate, not completion percentages;
 ## Next actions and release gates
 
 Run `pico8 -run carts/orbit_rush.p8` with a licensed official installation. Complete 1v1/1v2/1v3 matches, rematches and every arena, inspect native graphics/audio, record peak `stat(1)` and Lua memory, run fixed-point regressions, and document human balance feedback. Fix any observed critical defects before tagging a final release. All desktop build/test instructions are in README.md.
+
+## Creator playtest update
+
+The creator reports that the current game "plays perfectly." This is user-reported runtime success, not an assistant-run graphical test. Runtime version, configuration coverage, CPU readings, controller/audio checks and final PNG export verification remain to be recorded. See docs/release-guide.md for the final publishing workflow.
+
+## Promotional media milestone
+
+Created an original16-colour cartridge cover, embedded through the reproducible builder, and exported an official runnable PNG cartridge. Located the installed official runtime and captured actual title/four-arena screenshots plus a240-frame native gameplay GIF using scripted controls. Native128px screenshots and enlarged exports are in media/. Runtime PNG export roundtrip preserved Lua and label exactly. Focused regression and PICO-specific budget checks passed; game Lua unchanged. Capture provenance and regeneration instructions are in media/README.md. Actual human/controller/audio and worst-case CPU checks remain distinct release tasks.
