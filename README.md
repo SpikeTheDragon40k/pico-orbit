@@ -6,7 +6,9 @@ The cartridge implements all four arenas, four difficulties, cosmetic pilot sele
 
 ## Play
 
-Install a licensed Linux build of [official PICO-8](https://www.lexaloffle.com/pico-8.php), then run from this directory:
+Play in your browser on the [Lexaloffle BBS](https://www.lexaloffle.com/bbs/?pid=199244#p), or find Orbit Rush in PICO-8's Splore. Project website: https://spikethedragon40k.github.io/pico-orbit/
+
+To run locally, install a licensed Linux build of [official PICO-8](https://www.lexaloffle.com/pico-8.php), then run from this directory:
 
 ```sh
 pico8 -run carts/orbit_rush.p8
